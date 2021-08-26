@@ -1,4 +1,4 @@
-# Pagar.me Conventional Standards
+# Pagar.me Demo Conventional Standards
 
 Utility with some conventional patterns for deploying branch-versioned services
 

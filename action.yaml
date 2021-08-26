@@ -1,4 +1,4 @@
-name: 'Pagar.me Conventional Standards'
+name: 'Pagar.me Demo Conventional Standards'
 description: 'Utility with some conventional patterns for deploying branch-versioned services'
 branding:
   icon: 'command'
