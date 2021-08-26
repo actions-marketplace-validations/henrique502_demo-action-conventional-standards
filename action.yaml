@@ -1,0 +1,41 @@
+name: 'Pagar.me Conventional Standards'
+description: 'Utility with some conventional patterns for deploying branch-versioned services'
+branding:
+  icon: 'command'
+  color: 'green'
+inputs:
+  environment:
+    description: 'Environment slug'
+    required: true
+  version-file:
+    description: 'Version file location'
+    required: true
+  version-key:
+    description: 'Version object key location'
+    default: "version"
+    required: true
+  container-registry:
+    description: 'Docker container registry URL'
+    required: true
+outputs:
+  environment:
+    description: 'Environment slug'
+  version:
+    description: 'Version from version file'
+  project-name:
+    description: 'Project slug'
+  short-sha:
+    description: 'Short commit sha'
+  container-registry:
+    description: 'Docker container registry URL'
+  container-repository:
+    description: 'Repository name, {project-name}-{environment}'
+  container-tag:
+    description: 'Project tag, {version}-{context.runId}-{short-sha}'
+  container-url:
+    description: 'Concatenate {container-registry}/{container-repository}'
+  container-image:
+    description: 'Concatenate {container-url}:{container-tag}'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
