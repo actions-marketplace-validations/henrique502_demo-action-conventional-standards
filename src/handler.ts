@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { Context } from '@actions/github/lib/context';
-import { isEmpty, escapeRegExp } from 'lodash';
-import { getProjectName, getVersion } from './helper';
+import { isEmpty } from 'lodash';
+import { getProjectName, getVersion, escapeRegExp } from './helper';
 import { Inputs } from './inputs';
 import { Outputs } from './outputs';
 

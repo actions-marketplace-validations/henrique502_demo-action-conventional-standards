@@ -59,9 +59,12 @@ export const getVersion = (file: string, key: string = 'version'): string => {
   return version;
 };
 
+export const escapeRegExp = (string: string): string => string.replace('/', '\\/');
+
 export default {
   getProjectName,
   getVersion,
   getWorkspace,
   parseByExt,
+  escapeRegExp,
 };

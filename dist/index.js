@@ -37,16 +37,16 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
     return {
         environment: inputs.environment,
         containerRegistry: inputs.containerRegistry,
-        containerRegistryEscaped: lodash_1.escapeRegExp(inputs.containerRegistry),
+        containerRegistryEscaped: helper_1.escapeRegExp(inputs.containerRegistry),
         version,
         containerRepository,
-        containerRepositoryEscaped: lodash_1.escapeRegExp(containerRepository),
+        containerRepositoryEscaped: helper_1.escapeRegExp(containerRepository),
         containerUrl,
-        containerUrlEscaped: lodash_1.escapeRegExp(containerUrl),
+        containerUrlEscaped: helper_1.escapeRegExp(containerUrl),
         containerTag,
-        containerTagEscaped: lodash_1.escapeRegExp(containerTag),
+        containerTagEscaped: helper_1.escapeRegExp(containerTag),
         containerImage,
-        containerImageEscaped: lodash_1.escapeRegExp(containerImage),
+        containerImageEscaped: helper_1.escapeRegExp(containerImage),
         shortSha,
         projectName,
         chartLocation,
@@ -66,7 +66,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getVersion = exports.parseByExt = exports.getProjectName = exports.getWorkspace = void 0;
+exports.escapeRegExp = exports.getVersion = exports.parseByExt = exports.getProjectName = exports.getWorkspace = void 0;
 const path_1 = __nccwpck_require__(5622);
 const fs_1 = __importDefault(__nccwpck_require__(5747));
 const js_yaml_1 = __importDefault(__nccwpck_require__(1917));
@@ -120,11 +120,14 @@ const getVersion = (file, key = 'version') => {
     return version;
 };
 exports.getVersion = getVersion;
+const escapeRegExp = (string) => string.replace('/', '\\/');
+exports.escapeRegExp = escapeRegExp;
 exports.default = {
     getProjectName: exports.getProjectName,
     getVersion: exports.getVersion,
     getWorkspace: exports.getWorkspace,
     parseByExt: exports.parseByExt,
+    escapeRegExp: exports.escapeRegExp,
 };
 
 

@@ -26,11 +26,11 @@ describe('Handler flow suite', () => {
       containerTag: `1.2.3-1157b612`,
       containerImage: `registry.hub.docker.com/action-conventional-standards-stg:1.2.3-1157b612`,
       chartLocation: 'charts/action-conventional-standards/1.2.3',
-      containerImageEscaped: 'registry\\.hub\\.docker\\.com/action-conventional-standards-stg:1\\.2\\.3-1157b612',
-      containerRegistryEscaped: 'registry\\.hub\\.docker\\.com',
+      containerImageEscaped: 'registry.hub.docker.com\\/action-conventional-standards-stg:1.2.3-1157b612',
+      containerRegistryEscaped: 'registry.hub.docker.com',
       containerRepositoryEscaped: 'action-conventional-standards-stg',
-      containerTagEscaped: '1\\.2\\.3-1157b612',
-      containerUrlEscaped: 'registry\\.hub\\.docker\\.com/action-conventional-standards-stg',
+      containerTagEscaped: '1.2.3-1157b612',
+      containerUrlEscaped: 'registry.hub.docker.com\\/action-conventional-standards-stg',
     };
 
     const data = await handler(context, inputs);
