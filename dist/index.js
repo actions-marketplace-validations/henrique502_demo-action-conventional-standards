@@ -37,11 +37,16 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
     return {
         environment: inputs.environment,
         containerRegistry: inputs.containerRegistry,
+        containerRegistryEscaped: lodash_1.escapeRegExp(inputs.containerRegistry),
         version,
         containerRepository,
+        containerRepositoryEscaped: lodash_1.escapeRegExp(containerRepository),
         containerUrl,
+        containerUrlEscaped: lodash_1.escapeRegExp(containerUrl),
         containerTag,
+        containerTagEscaped: lodash_1.escapeRegExp(containerTag),
         containerImage,
+        containerImageEscaped: lodash_1.escapeRegExp(containerImage),
         shortSha,
         projectName,
         chartLocation,
@@ -256,6 +261,11 @@ const set = (data) => {
     core.setOutput('container-url', data.containerUrl);
     core.setOutput('container-image', data.containerImage);
     core.setOutput('chart-location', data.chartLocation);
+    core.setOutput('container-image-escaped', data.containerImageEscaped);
+    core.setOutput('container-registry-escaped', data.containerRegistryEscaped);
+    core.setOutput('container-repository-escaped', data.containerRepositoryEscaped);
+    core.setOutput('container-tag-escaped', data.containerTagEscaped);
+    core.setOutput('container-url-escaped', data.containerUrlEscaped);
 };
 exports.default = set;
 

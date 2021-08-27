@@ -42,6 +42,16 @@ outputs:
     description: 'Concatenate {container-url}:{container-tag}'
   chart-location:
     description: 'Chart location in charts folder'
+  container-registry-escaped:
+    description: 'Escape version for output container-registry'
+  container-repository-escaped:
+    description: 'Escape version for output container-repository'
+  container-url-escaped:
+    description: 'Escape version for output container-url'
+  container-tag-escaped:
+    description: 'Escape version for output container-tag'
+  container-image-escaped:
+    description: 'Escape version for output container-image'
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -10,6 +10,12 @@ export type Outputs = {
   containerTag: string;
   containerImage: string;
   chartLocation: string;
+
+  containerImageEscaped: string;
+  containerRegistryEscaped: string;
+  containerRepositoryEscaped: string;
+  containerTagEscaped: string;
+  containerUrlEscaped: string;
 };
 
 const set = (data: Outputs): void => {
@@ -21,6 +27,12 @@ const set = (data: Outputs): void => {
   core.setOutput('container-url', data.containerUrl);
   core.setOutput('container-image', data.containerImage);
   core.setOutput('chart-location', data.chartLocation);
+
+  core.setOutput('container-image-escaped', data.containerImageEscaped);
+  core.setOutput('container-registry-escaped', data.containerRegistryEscaped);
+  core.setOutput('container-repository-escaped', data.containerRepositoryEscaped);
+  core.setOutput('container-tag-escaped', data.containerTagEscaped);
+  core.setOutput('container-url-escaped', data.containerUrlEscaped);
 };
 
 export default set;

@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { Context } from '@actions/github/lib/context';
-import { isEmpty } from 'lodash';
+import { isEmpty, escapeRegExp } from 'lodash';
 import { getProjectName, getVersion } from './helper';
 import { Inputs } from './inputs';
 import { Outputs } from './outputs';
@@ -27,11 +27,16 @@ const handler = async (context: Context, inputs: Inputs): Promise<Outputs> => {
   return {
     environment: inputs.environment,
     containerRegistry: inputs.containerRegistry,
+    containerRegistryEscaped: escapeRegExp(inputs.containerRegistry),
     version,
     containerRepository,
+    containerRepositoryEscaped: escapeRegExp(containerRepository),
     containerUrl,
+    containerUrlEscaped: escapeRegExp(containerUrl),
     containerTag,
+    containerTagEscaped: escapeRegExp(containerTag),
     containerImage,
+    containerImageEscaped: escapeRegExp(containerImage),
     shortSha,
     projectName,
     chartLocation,
