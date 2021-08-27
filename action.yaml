@@ -31,7 +31,7 @@ outputs:
   container-repository:
     description: 'Repository name, {project-name}-{environment}'
   container-tag:
-    description: 'Project tag, {version}-{context.runId}-{short-sha}'
+    description: 'Project tag, {version}-{short-sha}'
   container-url:
     description: 'Concatenate {container-registry}/{container-repository}'
   container-image:

@@ -10,7 +10,6 @@ const handler = async (context: Context, inputs: Inputs): Promise<Outputs> => {
 
   const containerTag = [
     version,
-    context.runId,
     shortSha,
   ].join('-');
 

@@ -24,8 +24,8 @@ describe('Handler flow suite', () => {
       projectName: 'action-conventional-standards',
       containerRepository: 'action-conventional-standards-stg',
       containerUrl: 'registry.hub.docker.com/action-conventional-standards-stg',
-      containerTag: `1.2.3-${context.runId}-1157b612`,
-      containerImage: `registry.hub.docker.com/action-conventional-standards-stg:1.2.3-${context.runId}-1157b612`,
+      containerTag: `1.2.3-1157b612`,
+      containerImage: `registry.hub.docker.com/action-conventional-standards-stg:1.2.3-1157b612`,
     };
 
     const data = await handler(context, inputs);
