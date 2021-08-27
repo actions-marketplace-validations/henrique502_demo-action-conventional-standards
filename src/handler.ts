@@ -1,4 +1,6 @@
+import { join } from 'path';
 import { Context } from '@actions/github/lib/context';
+import { isEmpty } from 'lodash';
 import { getProjectName, getVersion } from './helper';
 import { Inputs } from './inputs';
 import { Outputs } from './outputs';
@@ -17,8 +19,14 @@ const handler = async (context: Context, inputs: Inputs): Promise<Outputs> => {
   const containerUrl = `${inputs.containerRegistry}/${containerRepository}`;
   const containerImage = `${containerUrl}:${containerTag}`;
 
+  let chartLocation: string = join('charts', projectName, version);
+  if (inputs.chartsPath && !isEmpty(inputs.chartsPath)) {
+    chartLocation = join(inputs.chartsPath, chartLocation);
+  }
+
   return {
-    ...inputs,
+    environment: inputs.environment,
+    containerRegistry: inputs.containerRegistry,
     version,
     containerRepository,
     containerUrl,
@@ -26,6 +34,7 @@ const handler = async (context: Context, inputs: Inputs): Promise<Outputs> => {
     containerImage,
     shortSha,
     projectName,
+    chartLocation,
   };
 };
 

@@ -17,6 +17,10 @@ inputs:
   container-registry:
     description: 'Docker container registry URL'
     required: true
+  charts-path:
+    description: 'Charts path prefix'
+    default: './'
+    required: false
 outputs:
   environment:
     description: 'Environment slug'
@@ -36,6 +40,8 @@ outputs:
     description: 'Concatenate {container-registry}/{container-repository}'
   container-image:
     description: 'Concatenate {container-url}:{container-tag}'
+  chart-location:
+    description: 'Chart location in charts folder'
 runs:
   using: 'node12'
   main: 'dist/index.js'

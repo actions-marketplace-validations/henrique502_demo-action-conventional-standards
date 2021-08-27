@@ -13,12 +13,11 @@ describe('Handler flow suite', () => {
       environment: 'stg',
       versionFile: jsonPath,
       versionKey: 'version',
+      chartsPath: undefined,
     };
     const expected: Outputs = {
       containerRegistry: 'registry.hub.docker.com',
       environment: 'stg',
-      versionFile: jsonPath,
-      versionKey: 'version',
       version: '1.2.3',
       shortSha: '1157b612',
       projectName: 'action-conventional-standards',
@@ -26,6 +25,7 @@ describe('Handler flow suite', () => {
       containerUrl: 'registry.hub.docker.com/action-conventional-standards-stg',
       containerTag: `1.2.3-1157b612`,
       containerImage: `registry.hub.docker.com/action-conventional-standards-stg:1.2.3-1157b612`,
+      chartLocation: 'charts/action-conventional-standards/1.2.3',
     };
 
     const data = await handler(context, inputs);

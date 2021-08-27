@@ -9,6 +9,7 @@ export type Outputs = {
   containerUrl: string;
   containerTag: string;
   containerImage: string;
+  chartLocation: string;
 };
 
 const set = (data: Outputs): void => {
@@ -19,6 +20,7 @@ const set = (data: Outputs): void => {
   core.setOutput('container-tag', data.containerTag);
   core.setOutput('container-url', data.containerUrl);
   core.setOutput('container-image', data.containerImage);
+  core.setOutput('chart-location', data.chartLocation);
 };
 
 export default set;
