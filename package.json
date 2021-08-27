@@ -9,7 +9,8 @@
     "build": "tsc",
     "test": "mocha",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map"
+    "package": "ncc build --source-map",
+    "all": "rm -rf ./lib && rm -rf ./dist && npm run test && npm run lint && npm run build && npm run package"
   },
   "repository": {
     "type": "git",
