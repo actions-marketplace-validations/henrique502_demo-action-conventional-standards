@@ -241,8 +241,7 @@ const set = (data) => {
     core.setOutput('container-registry', data.containerRegistry);
     core.setOutput('container-repository', data.containerRepository);
     core.setOutput('container-tag', data.containerTag);
-    core.setOutput('container-tag', data.containerTag);
-    core.setOutput('container-image', data.containerImage);
+    core.setOutput('container-url', data.containerUrl);
 };
 exports.default = set;
 
