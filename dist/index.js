@@ -23,7 +23,6 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
     const version = helper_1.getVersion(inputs.versionFile, inputs.versionKey);
     const containerTag = [
         version,
-        context.runId,
         shortSha,
     ].join('-');
     const containerRepository = `${projectName}-${inputs.environment}`;
