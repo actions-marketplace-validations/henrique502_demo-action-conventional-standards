@@ -29,6 +29,15 @@ export const getProjectName = (context: Context): string => {
   return paramCase(name);
 };
 
+export const getProjectUrl = (context: Context): string => {
+  const name = context.payload.repository?.full_name;
+  if (!name) {
+    throw new ReferenceError('context.payload.repository.full_name not found');
+  }
+
+  return name;
+};
+
 export const parseByExt = (data: string, ext: string): { type: string, value: unknown } => {
   switch (ext.toLowerCase()) {
     case '.json':
@@ -87,4 +96,5 @@ export default {
   parseByExt,
   escapeRegExp,
   generateTag,
+  getProjectUrl,
 };

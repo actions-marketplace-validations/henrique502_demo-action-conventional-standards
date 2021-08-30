@@ -6,6 +6,7 @@ import {
   getVersion,
   escapeRegExp,
   generateTag,
+  getProjectUrl,
 } from './helper';
 import { Inputs } from './inputs';
 import { Outputs } from './outputs';
@@ -14,6 +15,7 @@ const handler = async (context: Context, inputs: Inputs): Promise<Outputs> => {
   const projectName = getProjectName(context);
   const shortSha = context.sha.substring(0, 8);
   const version = getVersion(inputs.versionFile, inputs.versionKey);
+  const projectUrl = getProjectUrl(context);
 
   const containerTag = generateTag({
     environment: inputs.environment,
@@ -46,8 +48,8 @@ const handler = async (context: Context, inputs: Inputs): Promise<Outputs> => {
     containerImageEscaped: escapeRegExp(containerImage),
     shortSha,
     projectName,
-    projectUrl: context.repo.repo,
-    projectUrlEscaped: escapeRegExp(context.repo.repo),
+    projectUrl,
+    projectUrlEscaped: escapeRegExp(projectUrl),
     chartLocation,
   };
 };

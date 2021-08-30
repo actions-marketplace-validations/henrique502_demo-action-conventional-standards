@@ -23,6 +23,7 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
     const projectName = helper_1.getProjectName(context);
     const shortSha = context.sha.substring(0, 8);
     const version = helper_1.getVersion(inputs.versionFile, inputs.versionKey);
+    const projectUrl = helper_1.getProjectUrl(context);
     const containerTag = helper_1.generateTag({
         environment: inputs.environment,
         version,
@@ -51,8 +52,8 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
         containerImageEscaped: helper_1.escapeRegExp(containerImage),
         shortSha,
         projectName,
-        projectUrl: context.repo.repo,
-        projectUrlEscaped: helper_1.escapeRegExp(context.repo.repo),
+        projectUrl,
+        projectUrlEscaped: helper_1.escapeRegExp(projectUrl),
         chartLocation,
     };
 });
@@ -70,7 +71,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.generateTag = exports.escapeRegExp = exports.getVersion = exports.parseByExt = exports.getProjectName = exports.getWorkspace = void 0;
+exports.generateTag = exports.escapeRegExp = exports.getVersion = exports.parseByExt = exports.getProjectUrl = exports.getProjectName = exports.getWorkspace = void 0;
 const path_1 = __nccwpck_require__(5622);
 const fs_1 = __importDefault(__nccwpck_require__(5747));
 const js_yaml_1 = __importDefault(__nccwpck_require__(1917));
@@ -97,6 +98,15 @@ const getProjectName = (context) => {
     return param_case_1.paramCase(name);
 };
 exports.getProjectName = getProjectName;
+const getProjectUrl = (context) => {
+    var _a;
+    const name = (_a = context.payload.repository) === null || _a === void 0 ? void 0 : _a.full_name;
+    if (!name) {
+        throw new ReferenceError('context.payload.repository.full_name not found');
+    }
+    return name;
+};
+exports.getProjectUrl = getProjectUrl;
 const parseByExt = (data, ext) => {
     switch (ext.toLowerCase()) {
         case '.json':
@@ -144,6 +154,7 @@ exports.default = {
     parseByExt: exports.parseByExt,
     escapeRegExp: exports.escapeRegExp,
     generateTag: exports.generateTag,
+    getProjectUrl: exports.getProjectUrl,
 };
 
 

@@ -21,9 +21,9 @@ export const createContext = (replace: object = {}): Context => {
     payload: {
       repository: {
         name: 'action-conventional-standards',
-        full_name: undefined,
+        full_name: 'henrique502/action-conventional-standards',
         owner: {
-          login: '',
+          login: 'henrique502',
           name: undefined,
         },
         html_url: undefined,
@@ -48,7 +48,7 @@ export const createContext = (replace: object = {}): Context => {
     serverUrl: '',
     graphqlUrl: '',
     issue: { owner: '', repo: '', number: 0 },
-    repo: { owner: 'henrique502', repo: 'henrique502/action-conventional-standards' },
+    repo: { owner: 'henrique502', repo: 'action-conventional-standards' },
   };
 
   return { ...data, ...replace };
