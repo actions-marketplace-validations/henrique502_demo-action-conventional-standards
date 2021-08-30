@@ -23,14 +23,16 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
     const projectName = helper_1.getProjectName(context);
     const shortSha = context.sha.substring(0, 8);
     const version = helper_1.getVersion(inputs.versionFile, inputs.versionKey);
-    const containerTag = [
+    const containerTag = helper_1.generateTag({
+        environment: inputs.environment,
         version,
         shortSha,
-    ].join('-');
+        context,
+    });
     const containerRepository = `${projectName}-${inputs.environment}`;
     const containerUrl = `${inputs.containerRegistry}/${containerRepository}`;
     const containerImage = `${containerUrl}:${containerTag}`;
-    let chartLocation = path_1.join('charts', projectName, version);
+    let chartLocation = path_1.join('charts', projectName, containerTag);
     if (inputs.chartsPath && !lodash_1.isEmpty(inputs.chartsPath)) {
         chartLocation = path_1.join(inputs.chartsPath, chartLocation);
     }
@@ -49,6 +51,8 @@ const handler = (context, inputs) => __awaiter(void 0, void 0, void 0, function*
         containerImageEscaped: helper_1.escapeRegExp(containerImage),
         shortSha,
         projectName,
+        projectUrl: context.repo.repo,
+        projectUrlEscaped: helper_1.escapeRegExp(context.repo.repo),
         chartLocation,
     };
 });
@@ -66,7 +70,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.escapeRegExp = exports.getVersion = exports.parseByExt = exports.getProjectName = exports.getWorkspace = void 0;
+exports.generateTag = exports.escapeRegExp = exports.getVersion = exports.parseByExt = exports.getProjectName = exports.getWorkspace = void 0;
 const path_1 = __nccwpck_require__(5622);
 const fs_1 = __importDefault(__nccwpck_require__(5747));
 const js_yaml_1 = __importDefault(__nccwpck_require__(1917));
@@ -122,12 +126,24 @@ const getVersion = (file, key = 'version') => {
 exports.getVersion = getVersion;
 const escapeRegExp = (string) => string.replace('/', '\\/');
 exports.escapeRegExp = escapeRegExp;
+const generateTag = (params) => {
+    if (params.environment === 'stg') {
+        return [
+            params.version,
+            params.context.runId,
+            params.shortSha,
+        ].join('-');
+    }
+    return params.version;
+};
+exports.generateTag = generateTag;
 exports.default = {
     getProjectName: exports.getProjectName,
     getVersion: exports.getVersion,
     getWorkspace: exports.getWorkspace,
     parseByExt: exports.parseByExt,
     escapeRegExp: exports.escapeRegExp,
+    generateTag: exports.generateTag,
 };
 
 
@@ -264,11 +280,14 @@ const set = (data) => {
     core.setOutput('container-url', data.containerUrl);
     core.setOutput('container-image', data.containerImage);
     core.setOutput('chart-location', data.chartLocation);
+    core.setOutput('project-url', data.projectUrl);
+    core.setOutput('project-name', data.projectName);
     core.setOutput('container-image-escaped', data.containerImageEscaped);
     core.setOutput('container-registry-escaped', data.containerRegistryEscaped);
     core.setOutput('container-repository-escaped', data.containerRepositoryEscaped);
     core.setOutput('container-tag-escaped', data.containerTagEscaped);
     core.setOutput('container-url-escaped', data.containerUrlEscaped);
+    core.setOutput('project-url-escaped', data.projectUrlEscaped);
 };
 exports.default = set;
 

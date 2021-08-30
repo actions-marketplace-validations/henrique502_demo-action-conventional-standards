@@ -28,6 +28,8 @@ outputs:
     description: 'Version from version file'
   project-name:
     description: 'Project slug'
+  project-url:
+    description: 'Project url'
   short-sha:
     description: 'Short commit sha'
   container-registry:
@@ -52,6 +54,8 @@ outputs:
     description: 'Escape version for output container-tag'
   container-image-escaped:
     description: 'Escape version for output container-image'
+  project-url-escaped:
+    description: 'Escape version for output project-url'
 runs:
   using: 'node12'
   main: 'dist/index.js'

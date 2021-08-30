@@ -61,10 +61,30 @@ export const getVersion = (file: string, key: string = 'version'): string => {
 
 export const escapeRegExp = (string: string): string => string.replace('/', '\\/');
 
+export type TagParams = {
+  context: Context,
+  environment: string,
+  version: string,
+  shortSha: string,
+};
+
+export const generateTag = (params: TagParams): string => {
+  if (params.environment === 'stg') {
+    return [
+      params.version,
+      params.context.runId,
+      params.shortSha,
+    ].join('-');
+  }
+
+  return params.version;
+};
+
 export default {
   getProjectName,
   getVersion,
   getWorkspace,
   parseByExt,
   escapeRegExp,
+  generateTag,
 };

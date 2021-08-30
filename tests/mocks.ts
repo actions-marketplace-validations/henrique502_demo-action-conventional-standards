@@ -48,7 +48,7 @@ export const createContext = (replace: object = {}): Context => {
     serverUrl: '',
     graphqlUrl: '',
     issue: { owner: '', repo: '', number: 0 },
-    repo: { owner: '', repo: '' },
+    repo: { owner: 'henrique502', repo: 'henrique502/action-conventional-standards' },
   };
 
   return { ...data, ...replace };
